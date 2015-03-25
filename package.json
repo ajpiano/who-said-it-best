@@ -1,0 +1,17 @@
+{
+  "name": "who-said-it-best",
+  "description": "a speech recognition API gameshow",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "express": "^4.12.2",
+    "jade": "^1.9.2",
+    "lodash": "^3.5.0",
+    "moment": "^2.9.0",
+    "request-promise": "^0.4.0"
+  }
+}

@@ -1,0 +1,17 @@
+doctype html(lang='en')
+html
+head
+    meta(charset='utf-8')
+    title= config.game_name
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/css/fonts.css')
+    link(rel='stylesheet', href='/css/all.css')
+    meta(name='description', content='Who Said It Best')
+    link(rel='shortcut icon', href='img/favicon.ico', type='image/x-icon')
+  body
+    include ./partials/header
+    .main-container
+      .main.wrapper.clearfix
+        .wrap
+          block content
+    include ./partials/footer
