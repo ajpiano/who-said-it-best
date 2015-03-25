@@ -18,9 +18,9 @@ body {
 a { 
   color: @phrase;
   text-decoration: none;
-  -webkit-transition: background .25s ease-in-out, color .25s ease-in-out;
-  -moz-transition: background .25s ease-in-out, color .25s ease-in-out;
-  transition: background .25s ease-in-out, color .25s ease-in-out;
+  -webkit-transition: color .25s ease-in-out;
+  -moz-transition: color .25s ease-in-out;
+  transition: color .25s ease-in-out;
 
   &:hover {
     color: @phrase;
@@ -55,6 +55,14 @@ section.stage {
     padding: 1em;
     text-align: center;
     .border-radius();
+    .transition(border .5s linear);
+
+    &.winner {
+      border:10px solid @light-neutral;
+    }
+    &.loser {
+      border:10px solid @dark-neutral;
+    }
 
     h2 {
       margin: 0;
@@ -72,6 +80,14 @@ section.stage {
       border: 1px dashed @light-neutral;
       padding: .5em;
       .border-radius();
+    }
+
+    .message {
+      margin-top: 1em;
+      .glyphicon {
+        font-size: 4em;
+        margin-bottom: .2em;
+      }
     }
 
   }

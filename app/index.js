@@ -27,7 +27,7 @@ app.get('/phrase', function(req, res){
     qs: {
       api_key: config.wordnik_api_key,
       minCorpusCount: 100000,
-      limit: 10
+      limit: 8
     }
   });
   words.then(function(data) {

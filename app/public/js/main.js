@@ -116,6 +116,9 @@ var game = game || {};
   models.Player = Backbone.Model.extend({
     attributes: {
       name: "Player",
+      winner: false,
+      loser: false,
+      score: 0
     },
     initialize: function() {
       this.recognition = false;
@@ -128,7 +131,7 @@ var game = game || {};
       return {
         speaking: false,
         transcript: "",
-        score: 0
+        score: 0,
       };
     },
     render: function() {
@@ -137,13 +140,36 @@ var game = game || {};
       var ended = this.props.player.recognition && this.props.player.recognition.get("ended");
       var button = ended ? "" : <button type="button" className="btn btn-primary"onClick={this.handleSpeakingStartStop}>{buttonText}</button>;
       var score = ended ? <div className="score">{this.state.score}</div> : "";
+      var className = "player col-md-3 col-md-offset-2";
+      className += this.props.player.get("winner") ? " winner" : "";
+      className += this.props.player.get("loser") ? " loser" : "";
+      var message = "";
+
+      if (ended && this.props.player.get("winner")) {
+        message = (
+          <div className="message">
+            <span className="glyphicon glyphicon-thumbs-up"></span>
+            <p>Congrats, you won!</p>
+          </div>
+        );
+      }
+
+      if (ended && this.props.player.get("loser")) {
+        message = (
+          <div className="message">
+            <span className="glyphicon glyphicon-thumbs-down"></span>
+            <p>You did not win.</p>
+          </div>
+        );
+      }
 
       return (
-        <div className="player col-md-3 col-md-offset-2">
+        <div className={className}>
           <h2>{this.props.player.get("name")}</h2>
           <PlayerPhraseZone words={this.state.transcript.split(" ")} key={this.resultCount}/>
           {score}
           {button} 
+          {message}
         </div>
       )
     },
@@ -164,12 +190,15 @@ var game = game || {};
       }.bind(this))
 
       this.props.player.recognition.on("change:confidence", function(r, confidence) {
-        this.setState({score: Math.round(confidence * 10000)/100});
+        var score = Math.round(confidence * 10000)/100;
+        this.setState({score: score});
+        this.props.player.set({score: score});
       }.bind(this))
 
       this.props.player.recognition.on("change:ended", function(r, fin) {
         if (fin && this.state.speaking) {
           this.stopSpeaking();
+          this.props.checkGameOver();
         }
       }.bind(this))
 
@@ -210,10 +239,24 @@ var game = game || {};
     render: function() {
       return (
         <div id="playing-field" className="row">
-          <Player player={this.state.players[0]} />
-          <Player player={this.state.players[1]} />
+          <Player key={this.state.players[0].get("name")} player={this.state.players[0]} checkGameOver={this.checkGameOver}/>
+          <Player key={this.state.players[1].get("name")} player={this.state.players[1]} checkGameOver={this.checkGameOver}/>
         </div>
       )
+    },
+    checkGameOver: function() {
+      var gameIsOver = _.every(this.state.players, function(player) {
+        return player.recognition && player.recognition.get("ended");
+      });
+      if ( gameIsOver ) {
+        // Sort on score, low to high. Low is the loser, high is the winner.
+        var winLose = _.sortBy(this.state.players, function(player) {
+          return player.get("score");
+        });
+        winLose[0].set({loser: true});
+        winLose[1].set({winner: true});
+        this.forceUpdate();
+      }
     }
   });
 
