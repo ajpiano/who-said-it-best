@@ -19,8 +19,8 @@ var game = game || {};
       );
       return (
         <div>
-          <Nav handleStopStart={this.handleStopStart} playing={this.state.playing}/>
           {content}
+          <Nav handleStopStart={this.handleStopStart} playing={this.state.playing}/>
         </div>
       );
     },
@@ -34,8 +34,8 @@ var game = game || {};
   var Nav = React.createClass({
     render: function() {
       var buttons = this.props.playing ?
-          <a href="#" onClick={this.props.handleStopStart}>Stop!</a> :
-          <a href="#play" onClick={this.props.handleStopStart}>Play!</a>;
+          <button type="button" className="btn btn-primary" onClick={this.props.handleStopStart}>Stop!</button> :
+          <button type="button" className="btn btn-primary" onClick={this.props.handleStopStart}>Play!</button>;
       return (
         <nav className='primary'>
           {buttons}
@@ -69,7 +69,14 @@ var game = game || {};
         );
       });
       return (
-        <p>{words}</p>
+        <div className="row">
+          <div className="col-md-6 col-md-offset-3">
+            <h2>On your turn, speak this phrase:</h2>
+            <div className="phrase-zone">
+              <p>{words}</p>
+            </div>
+          </div>
+        </div>
       );
     }
   });
@@ -128,12 +135,12 @@ var game = game || {};
       var buttonText = this.state.speaking ? "I'm Done!" : "Start Speaking!";
       var words = this.state.transcript.split
       var ended = this.props.player.recognition && this.props.player.recognition.get("ended");
-      var button = ended ? "" : <button type="button" onClick={this.handleSpeakingStartStop}>{buttonText}</button>;
-      var score = ended ? <h4 className="score">{this.state.score}</h4> : "";
+      var button = ended ? "" : <button type="button" className="btn btn-primary"onClick={this.handleSpeakingStartStop}>{buttonText}</button>;
+      var score = ended ? <div className="score">{this.state.score}</div> : "";
 
       return (
-        <div className="player">
-          <h1>{this.props.player.get("name")}</h1>
+        <div className="player col-md-3 col-md-offset-2">
+          <h2>{this.props.player.get("name")}</h2>
           <PlayerPhraseZone words={this.state.transcript.split(" ")} key={this.resultCount}/>
           {score}
           {button} 
@@ -186,7 +193,7 @@ var game = game || {};
         );
       }.bind(this));
       return (
-        <p>{words}</p>
+        <p className="player-phrase-zone">{words}</p>
       );
     }
   });
@@ -198,11 +205,11 @@ var game = game || {};
           new models.Player({name: "Player 1"}),
           new models.Player({name: "Player 2"})
         ]
-      }
+      };
     },
     render: function() {
       return (
-        <div id="playing-field">
+        <div id="playing-field" className="row">
           <Player player={this.state.players[0]} />
           <Player player={this.state.players[1]} />
         </div>
