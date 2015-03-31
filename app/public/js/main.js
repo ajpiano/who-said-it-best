@@ -1,3 +1,10 @@
+require('../css/main.less');
+
+const React = require('react');
+const jQuery = require('jquery');
+const Backbone = require('Backbone');
+const _ = require('lodash');
+
 var game = game || {};
 
 ;(function($) {
@@ -168,7 +175,7 @@ var game = game || {};
           <h2>{this.props.player.get("name")}</h2>
           <PlayerPhraseZone words={this.state.transcript.split(" ")} key={this.resultCount}/>
           {score}
-          {button} 
+          {button}
           {message}
         </div>
       )
@@ -273,3 +280,5 @@ var game = game || {};
   });
 
 })(jQuery);
+
+module.exports = game;
