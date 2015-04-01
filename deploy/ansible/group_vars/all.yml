@@ -1,0 +1,34 @@
+# Your one-word project name. No special characters!
+project_name: whosaiditbest
+
+# Git repo address. Modify as-needed.
+git_repo: git@github.com:ajpiano/who-said-it-best.git
+
+# Parent directory.
+base_path: /mnt
+
+# Where the production site symlink will exist. This value needs to be the
+# same as the config.vm.synced_folder setting in the Vagrantfile.
+site_path: "{{base_path}}/site"
+
+# Temporary location where the git repo will be cloned and the build scripts
+# will be run before going live.
+clone_path: "{{base_path}}/temp"
+
+# The directory that nginx will serve as the production site.
+public_path: "{{site_path}}/dist"
+
+# Used to configure nginx.
+# ssl_cert_path: /etc/ssl/star.bocoup.com.cert
+# ssl_key_path: /etc/ssl/star.bocoup.com.key
+
+# The port where the node app will be served
+site_port: 8001
+
+# The user/group who executes the node app
+site_user: www-data
+site_group: www-data
+
+# Where to keep logs for the node app
+site_log_file: /var/log/site
+

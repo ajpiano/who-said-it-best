@@ -1,0 +1,27 @@
+# Get the box up and running. These tasks run before the box is configured
+# or the project is cloned or built. All system dependencies should be
+# installed here.
+
+- name: update apt-cache
+  apt: update_cache=yes
+
+- name: add ppas to to apt
+  apt_repository: repo="{{item}}" update_cache=true
+  with_items:
+    - "ppa:chris-lea/node.js"
+    - "ppa:git-core/ppa"
+
+- name: install apt packages
+  apt: name={{item}} state=present
+  with_items:
+    - nginx
+    - git
+    - nodejs
+
+- name: install the latest npm
+  command: npm install -g npm
+
+- name: install global npm modules
+  npm: name={{item}} global=true
+  with_items:
+    - webpack

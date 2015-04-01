@@ -4,7 +4,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "build": "webpack",
+    "provision": "./deploy/provision.sh",
+    "deploy": "./deploy/deploy.sh"
   },
   "dependencies": {
     "body-parser": "^1.12.0",

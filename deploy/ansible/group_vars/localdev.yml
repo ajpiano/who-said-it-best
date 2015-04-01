@@ -1,0 +1,5 @@
+# For [localdev] defined in deploy/ansible/inventory/development
+
+env: development
+hostname: ansible-vagrant
+app_fqdn: "{{project_name}}.loc"

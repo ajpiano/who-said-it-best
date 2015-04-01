@@ -1,0 +1,5 @@
+# All app servers should be specified here. If you want to test deployment
+# without disrupting a live server, you can temporarily edit this file.
+
+[appservers]
+applicants.bocoup.com

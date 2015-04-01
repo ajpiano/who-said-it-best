@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const webpack = require('webpack');
 
+/*
 var compiler = webpack( require('./webpack.config') );
 compiler.watch(200, function(err, stats) {
   if ( err ) {
@@ -21,7 +22,8 @@ compiler.watch(200, function(err, stats) {
   }
 
   console.log('Compilation complete', stats.toString({colors: true}));
-})
+});
+*/
 
 app.use(require('./app'));
 app.listen(port, host);

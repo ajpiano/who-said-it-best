@@ -1,0 +1,5 @@
+# This IP must match the one in the Vagrantfile and should
+# be unique across all projects that use vagrant.
+
+[localdev]
+vagrant ansible_ssh_host=192.168.33.62

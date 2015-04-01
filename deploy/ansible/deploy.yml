@@ -1,0 +1,17 @@
+# deploy code and restart services
+
+- hosts: all
+  gather_facts: false
+  sudo: yes
+  vars:
+    commit: master
+    force: false
+  roles:
+    - {role: deploy, when: "env == 'production'"}
+  handlers:
+    - include: handlers/handlers.yml
+
+  tasks: 
+    - name: (re)start services
+      command: /bin/true
+      notify: restart site
