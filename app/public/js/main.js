@@ -40,11 +40,17 @@ var game = game || {};
 
   var Nav = React.createClass({
     render: function() {
+      var tagline = (
+        this.props.playing ? "" : <h3>
+          An (extremely early) prototype of an (extremely silly) gameshow based on the (extremely unsupported) <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web Speech API</a>
+        </h3>
+      );
       var buttons = this.props.playing ?
-          <button type="button" className="btn btn-primary" onClick={this.props.handleStopStart}>Stop!</button> :
+          <button type="button" className="btn btn-primary" onClick={this.props.handleStopStart}>Stop!</button>:
           <button type="button" className="btn btn-primary" onClick={this.props.handleStopStart}>Play!</button>;
       return (
         <nav className='primary'>
+          {tagline}
           {buttons}
         </nav>
       );
