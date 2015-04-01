@@ -2,4 +2,4 @@
 
 env: production
 hostname: "{{project_name}}"
-app_fqdn: "{{project_name}}.bocoup.com"
+app_fqdn: "{{project_name}}.website"
