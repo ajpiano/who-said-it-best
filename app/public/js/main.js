@@ -2,7 +2,7 @@ require('../css/main.less');
 
 const React = require('react');
 const jQuery = require('jquery');
-const Backbone = require('Backbone');
+const Backbone = require('backbone');
 const _ = require('lodash');
 
 var game = game || {};
