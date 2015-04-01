@@ -17,3 +17,7 @@
   shell: npm run build
   args:
     chdir: "{{clone_path}}"
+
+- name: copy real config.json into place
+  shell: cp {{base_path}}/config.json {{clone_path}}/config.json
+  when: "env == 'production'"
