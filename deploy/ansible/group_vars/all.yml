@@ -32,3 +32,16 @@ site_group: www-data
 # Where to keep logs for the node app
 site_log_file: /var/log/site
 
+# Users who can deploy the app
+users:
+  - name: ajpiano
+    real_name: adam j. sontag
+    state: present
+    shadow_pass: $6$rounds=100000$gJ5dfCfjy3DlFJ7C$FXP0bL.By3gLq811ygKd1eRJRavvBOEATx34PbTxyI8y9st3x0v6XnmERZoQ0tJdliMW18/jzbSJYm9IZvzwE/
+    groups: sudo
+    shell: /bin/bash
+
+keys:
+  - user: ajpiano
+    state: present
+    key: ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu/7k6bSQ1EwLXyfZqM9tw7K/3WB4jIgIW2Jmb1rnGdqeJ7jX3ezAAPJEqoSwvGFZoTONC35OLnNvUwvfo/96Es/9q+qnZZMCnktAFamUlzdbyGudnMq7GkRqzdk9BhaaD5R5Pv0mVSvKMNxn3oVvdKmJpZK8NRpFkY0L3y2WcVp+KgH9ucdNN7bF9O9QZIGFhDEQBBwJYym7zwm9pERrZNoKN6NrLin+pCkZDohQMotxZmLySmCviaFFL9/HTm5GC+SoIr9s5CQFchHlrAWbDjnbpLnfz4dkFU1Ksg78c4saITgN7Zsn2EEI5ON/nJPLfoz1qRubrus4FHyX9QuGwQ== ajpiano@ajpiano.com
