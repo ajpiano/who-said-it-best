@@ -3,6 +3,7 @@ const host = process.env.HOST || '0.0.0.0';
 const express = require('express');
 const app = express();
 const webpack = require('webpack');
+const isProduction = process.env.NODE_ENV === 'production';
 
 /*
 var compiler = webpack( require('./webpack.config') );
